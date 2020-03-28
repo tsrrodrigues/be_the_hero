@@ -13,17 +13,16 @@ _"Help ONGs financially to achieve their goals to help persons, animals, environ
 ### Built With
 
 - [Node JS](https://nodejs.org/en/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [React JS](https://pt-br.reactjs.org/) - A JS library to create UI.
+- [React-Native](https://facebook.github.io/react-native/) - Build the native app using JavaScript and React.
+
 - [Celebrate](https://github.com/arb/celebrate) - A joi validation middleware for Express.
-- [Express](https://expressjs.com/) - Web framework for Node.js
+- [Express](https://expressjs.com/) - Web framework for Node.js.
 - [SQLite3](https://www.sqlite.org/index.html) - SQLite is library that implements a SQL database engine.
 - [Knex](http://knexjs.org/) - Knex.js is a "batteries included" SQL query builder for SQLite3.
-
-- [React JS](https://pt-br.reactjs.org/) - A JS library to create UI.
-- [Axios](https://github.com/axios/axios) - HTTP Client
-- [React-Native-Vector-Icons](https://github.com/oblador/react-native-vector-icons) - Icons
-
-- [React-Native](https://facebook.github.io/react-native/) - Build the native app using JavaScript and React
-- [React-Navigation](https://reactnavigation.org/docs/en/getting-started.html) - Router
+- [Axios](https://github.com/axios/axios) - HTTP Client.
+- [React-Native-Vector-Icons](https://github.com/oblador/react-native-vector-icons) - Icons.
+- [React-Navigation](https://reactnavigation.org/docs/en/getting-started.html) - Router.
 - [Expo](https://expo.io/) - Expo is an open-source platform for making universal native apps for Android, iOS.
 
 ## Why?
