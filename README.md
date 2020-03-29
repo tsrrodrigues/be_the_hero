@@ -52,7 +52,7 @@ iOS .ipa installer: Soon!
   - Make contact by WhatsApp or Email and donate the money you would like to contribute
 - For ONGs
   - Register/Login your ONG on the application
-  - Register/Delete a Incident you would like to share
+  - Register/Edit/Delete a Incident you would like to share
 
 ## Getting Started
 
