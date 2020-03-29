@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import { FiEdit, FiPower, FiTrash2 } from 'react-icons/fi';
 
 import api from '../../services/api';
 import './styles.css';
@@ -31,7 +31,7 @@ export default function Profile() {
             await api.delete(`incidents/${id}`, {
                 headers: {
                     Authorization: ongId,
-                }   
+                }
             });
         } catch (err) {
             alert('Erro ao deletar caso, tente novamente.');
@@ -43,6 +43,14 @@ export default function Profile() {
     function handleLogout () {
         localStorage.clear();
         history.push('/');
+    }
+
+    async function handleEdit (incident) {
+        localStorage.setItem('id', incident.id);
+        localStorage.setItem('title', incident.title);
+        localStorage.setItem('description', incident.description);
+        localStorage.setItem('value', incident.value);
+        history.push(`/edit`);
     }
 
     return (
@@ -70,9 +78,17 @@ export default function Profile() {
                         <strong>VALOR:</strong>
                         <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}</p>
 
-                        <button onClick={() => handleDeleteIncident(incident.id)} type="button">
-                            <FiTrash2 size={20} color="#808080"/>
-                        </button>
+                        <div className="btn-incident">
+                            <button onClick={
+                                () => handleEdit(incident)}
+                                type="button">
+                                <FiEdit size={20} color="#808080"/>
+                            </button>
+
+                            <button onClick={() => handleDeleteIncident(incident.id)} type="button">
+                                <FiTrash2 size={20} color="#808080"/>
+                            </button>
+                        </div>
                     </li>
                 ))}
             </ul>

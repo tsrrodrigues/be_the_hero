@@ -8,6 +8,7 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function Register() {
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
@@ -18,7 +19,7 @@ export default function Register() {
     
     async function handleRegister (e) {
         e.preventDefault();
-
+        
         const data = {
             name,
             email,
@@ -26,6 +27,7 @@ export default function Register() {
             city,
             uf
         };
+
         
         try {
             const response = await api.post('ongs', data);
@@ -67,9 +69,9 @@ export default function Register() {
                         onChange={e => setEmail(e.target.value )}
                     />
                     <input
-                        placeholder="WhatsApp"
+                        placeholder="WhatsApp (DDD+Telefone)"
                         value={whatsapp}
-                        onChange={e => setWhatsapp(e.target.value )}    
+                        onChange={e => setWhatsapp(e.target.value)}    
                     />
                     
                     <div className="input-group">
@@ -86,7 +88,7 @@ export default function Register() {
                         />
                     </div>
 
-                    <button className="button" type="submit">Cadastrar</button>
+                    <button onClick={() => setWhatsapp("55"+whatsapp)} className="button" type="submit">Cadastrar</button>
                 </form>
             </div>
         </div>

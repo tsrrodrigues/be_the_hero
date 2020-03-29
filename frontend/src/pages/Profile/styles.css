@@ -60,12 +60,18 @@
     position: relative;
 }
 
-.profile-container ul li button {
+.profile-container ul li .btn-incident {
     position: absolute;
-    right: 24px;
     top: 24px;
+    right: 24px;
+}
+
+.profile-container ul li .btn-incident button {
+    background: transparent;
+    display: inline-block;
     border: 0;
     transition: opacity 0.2s;
+    margin-left: 15px;
 }
 
 .profile-container ul li button:hover {

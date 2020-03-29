@@ -52,5 +52,46 @@ module.exports = {
         await connection('incidents').where('id', id).delete();
 
         return response.status(204).send();
+    },
+
+    async edit (request, response) {
+        const ong_id = request.headers.authorization;
+        const { id } = request.params;
+        const { title, description, value } = request.body;
+
+        const incident = await connection('incidents')
+            .where('id', id)
+            .select('ong_id')
+            .first();
+
+        if (incident.ong_id !== ong_id)
+            return response.status(401).json({ error: 'Operation not permitted' });
+
+        await connection('incidents')
+            .where({
+                ong_id: ong_id,
+                id: id
+            })
+            .update({
+                title: title,
+                description: description,
+                value: value
+            });
+
+        return response.json({ id, title, description, value });
+    },
+
+    async listOne (request, response) {
+        const ong_id = request.headers.authorizationong;
+        const id = request.headers.authorizationincident;
+
+        const incident = await connection('incidents')
+            .where({
+                ong_id: ong_id,
+                id: id
+            })
+            .select('title', 'description', 'value');
+
+        return response.json(incident)
     }
 };

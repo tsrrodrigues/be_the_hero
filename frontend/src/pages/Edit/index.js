@@ -8,14 +8,15 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [value, setValue] = useState('');
+    const [title, setTitle] = useState(localStorage.getItem('title'));
+    const [description, setDescription] = useState(localStorage.getItem('description'));
+    const [value, setValue] = useState(localStorage.getItem('value'));
     
     const history = useHistory();
     const ongId = localStorage.getItem('ongId');
+    const id = localStorage.getItem('id');
 
-    async function handleNewIncident (e) {
+    async function handleEditIncident (e) {
         e.preventDefault();
 
         const data = {
@@ -25,16 +26,22 @@ export default function NewIncident() {
         };
 
         try {
-            await api.post('incidents', data, {
+            await api.put(`edit/${id}`, data, {
                 headers: {
                     Authorization: ongId,
                 }
             });
+            localStorage.removeItem('id');
+            localStorage.removeItem('title');
+            localStorage.removeItem('description');
+            localStorage.removeItem('value');
             history.push('/profile');
         } catch (err) {
-            alert("Erro ao cadastrar caso, tente novamente.");
+            alert("Erro ao editar caso, tente novamente.");
         }
     }
+
+    console.log(id);
 
     return (
         <div className="new-incident-container">
@@ -42,36 +49,34 @@ export default function NewIncident() {
                 <section>
                     <img src={logoImg} alt="Be The Hero"/>
 
-                    <h1>Cadastrar novo caso</h1>
+                    <h1>Editar caso</h1>
                     <p>
-                        Descreva o caso detalhadamente para
-                        encontrar um herói para resolver isso.
+                        Edites os campos desejados ao lado.
                     </p>
 
                     <Link className="back-link" to="/profile">
                         <FiArrowLeft size={16} color="#E02041" />
-                        Voltar para home
+                        Voltar
                     </Link>
                 </section>
 
-                <form onSubmit={handleNewIncident}>
-                    <input 
-                        placeholder="Titulo do Caso"
+                <form onSubmit={handleEditIncident}>
+                    <input
                         value={title}
                         onChange={ e => setTitle(e.target.value)}
                     />
                     <textarea 
-                        placeholder="Descrição"
                         value={description}
-                        onChange={ e => setDescription(e.target.value)}
+                        onChange={ e => setDescription(e.target.value)}                      
                     />
                     <input 
-                        placeholder="Valor em Reais"
                         value={value}
                         onChange={ e => setValue(e.target.value)}
                     />
 
-                    <button onClick={() => {setValue(value.replace(',', '.'))}} className="button" type="submit">Cadastrar</button>
+                    <button onClick={
+                        () => {setValue(value.replace(',', '.'))}
+                    } className="button" type="submit">Editar</button>
                 </form>
             </div>
         </div>

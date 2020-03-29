@@ -15,11 +15,13 @@ routes.post('/ongs', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
         email: Joi.string().required().email(),
-        whatsapp: Joi.string().required().min(10).max(11),
+        whatsapp: Joi.string().required().min(12).max(13),
         city: Joi.string().required(),
         uf: Joi.string().required().length(2) 
     })
 }), OngController.create);
+
+routes.delete('/ongs', OngController.delete);
 
 routes.get('/profile', celebrate({
     [Segments.HEADERS]: Joi.object({
@@ -40,5 +42,9 @@ routes.delete('/incidents/:id', celebrate({
         id: Joi.number().required()
     })
 }), IncidentController.delete);
+
+routes.put('/edit/:id', IncidentController.edit);
+
+routes.get('/edit', IncidentController.listOne);
 
 module.exports = routes;
